@@ -17,38 +17,27 @@
   --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
 }
 
-/* --- Base: liquid glass over dog_bg.JPG --- */
+/* --- Base --- */
 body {
-  background-image:
-    linear-gradient(rgba(8, 8, 12, 0.55), rgba(8, 8, 12, 0.55)),
-    url("/dog_bg.JPG");
-  background-attachment: scroll;        /* mobile — fixed is buggy on iOS/Android */
-  background-position: center;
-  background-size: contain;             /* show the whole dog on narrow screens */
-  background-repeat: no-repeat;
-  background-color: #08080C;            /* fills letterbox gaps from contain */
+  background-color: #08080C;
   color: #EBE8F0;
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Desktop: re-enable fixed attachment + cover (works reliably on desktop browsers) */
-@media (min-width: 768px) {
-  body {
-    background-attachment: fixed;
-    background-size: cover;
-  }
-}
-
-/* Ambient depth layers — overlaying the image */
+/* --- Dog background + ambient depth (fixed, works on all devices) --- */
 body::before {
   content: '';
-  position: absolute;                     /* scrolls with content on mobile, avoids fixed jank */
+  position: fixed;
   inset: 0;
-  z-index: -3;
-  min-height: 100vh;                      /* ensure it fills at least the viewport */
-  background:
+  z-index: -4;
+  background-image:
+    /* Layer 1 (top): dark scrim over the dog */
+    linear-gradient(rgba(8, 8, 12, 0.48), rgba(8, 8, 12, 0.48)),
+    /* Layer 2: the dog */
+    url("/dog_bg.JPG"),
+    /* Layer 3–6: ambient depth glows */
     radial-gradient(ellipse 90% 70% at 50% 0%,
       rgba(140, 100, 180, 0.10) 0%, transparent 50%),
     radial-gradient(ellipse 55% 50% at 85% 90%,
@@ -57,16 +46,49 @@ body::before {
       rgba(200, 64, 74, 0.08) 0%, transparent 55%),
     radial-gradient(ellipse 45% 45% at 15% 80%,
       rgba(80, 100, 200, 0.05) 0%, transparent 55%);
+  background-position: center;
+  background-repeat: no-repeat;
   pointer-events: none;
+}
+
+/* ── Responsive dog sizing ── */
+
+/* Phones (< 640px): contain → whole dog visible, no cropping */
+body::before {
+  background-size: auto, contain, auto, auto, auto, auto;
+}
+
+/* Tablets (640–1023px): cover → fills screen, wider AR means less cropping */
+@media (min-width: 640px) {
+  body::before {
+    background-size: auto, cover, auto, auto, auto, auto;
+  }
+}
+
+/* Desktop (≥ 1024px): cover + the gradient scrim gets slightly heavier for readability */
+@media (min-width: 1024px) {
+  body::before {
+    background-image:
+      linear-gradient(rgba(8, 8, 12, 0.55), rgba(8, 8, 12, 0.55)),
+      url("/dog_bg.JPG"),
+      radial-gradient(ellipse 90% 70% at 50% 0%,
+        rgba(140, 100, 180, 0.10) 0%, transparent 50%),
+      radial-gradient(ellipse 55% 50% at 85% 90%,
+        rgba(212, 168, 106, 0.06) 0%, transparent 55%),
+      radial-gradient(ellipse 40% 40% at 75% 15%,
+        rgba(200, 64, 74, 0.08) 0%, transparent 55%),
+      radial-gradient(ellipse 45% 45% at 15% 80%,
+        rgba(80, 100, 200, 0.05) 0%, transparent 55%);
+    background-size: auto, cover, auto, auto, auto, auto;
+  }
 }
 
 /* Floating light leaks */
 body::after {
   content: '';
-  position: absolute;                     /* scrolls with content on mobile, avoids fixed jank */
+  position: fixed;
   inset: 0;
-  z-index: -2;
-  min-height: 100vh;                      /* ensure it fills at least the viewport */
+  z-index: -3;
   background:
     radial-gradient(ellipse 30% 35% at 20% 30%,
       rgba(255, 255, 255, 0.025) 0%, transparent 60%),
