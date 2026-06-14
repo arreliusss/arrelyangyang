@@ -24,18 +24,20 @@ body {
     url("/dog_bg.JPG");
   background-attachment: scroll;        /* mobile — fixed is buggy on iOS/Android */
   background-position: center;
-  background-size: cover;
+  background-size: contain;             /* show the whole dog on narrow screens */
   background-repeat: no-repeat;
+  background-color: #08080C;            /* fills letterbox gaps from contain */
   color: #EBE8F0;
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Desktop: re-enable fixed attachment (works reliably on desktop browsers) */
+/* Desktop: re-enable fixed attachment + cover (works reliably on desktop browsers) */
 @media (min-width: 768px) {
   body {
     background-attachment: fixed;
+    background-size: cover;
   }
 }
 
