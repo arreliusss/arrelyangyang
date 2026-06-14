@@ -18,16 +18,16 @@ export default function ExperienceSection() {
         </ScrollReveal>
 
         <ScrollReveal>
-          <div className="relative bg-[rgba(255,255,255,0.04)] border border-[rgba(255,255,255,0.08)] rounded-[1.125rem] p-8 backdrop-blur-md shadow-[inset_0_1px_0_rgba(255,255,255,0.10),0_4px_24px_rgba(0,0,0,0.15)]">
-            {/* Duration badge */}
-            <span className="absolute top-7 right-7 text-[0.6875rem] font-medium text-[#6B6680] tracking-[0.02em] px-2.5 py-1 rounded-full bg-[rgba(255,255,255,0.03)] border border-[rgba(255,255,255,0.08)] backdrop-blur-sm">
-              Feb 2025 – Jan 2026 · 1 yr
-            </span>
-
-            <h3 className="text-xl font-bold text-[#EBE8F0] mb-1">Junior Researcher</h3>
-            <p className="text-[0.9375rem] font-medium text-[#E05862] mb-5">
+          <div className="relative bg-[rgba(255,255,255,0.04)] border border-[rgba(255,255,255,0.08)] rounded-[1.125rem] p-6 md:p-8 backdrop-blur-md shadow-[inset_0_1px_0_rgba(255,255,255,0.10),0_4px_24px_rgba(0,0,0,0.15)]">
+            <h3 className="text-xl font-bold text-[#EBE8F0] mb-1 pr-24 md:pr-0">Junior Researcher</h3>
+            <p className="text-[0.9375rem] font-medium text-[#E05862] mb-2 md:mb-5">
               BINUS University · Indonesia · Hybrid
             </p>
+
+            {/* Duration badge — inline on mobile, absolute on desktop */}
+            <span className="inline-flex md:absolute md:top-7 md:right-7 text-[0.6875rem] font-medium text-[#6B6680] tracking-[0.02em] px-2.5 py-1 rounded-full bg-[rgba(255,255,255,0.03)] border border-[rgba(255,255,255,0.08)] backdrop-blur-sm mb-5 md:mb-0">
+              Feb 2025 – Jan 2026 · 1 yr
+            </span>
 
             <ul className="space-y-2">
               {[

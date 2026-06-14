@@ -72,10 +72,14 @@ export default function ResearchSection() {
               <ScrollReveal key={paper.title} stagger={idx}>
                 <article
                   className={cn(
-                    "bg-[rgba(255,255,255,0.06)] border-b border-[rgba(255,255,255,0.10)] last:border-b-0",
+                    "bg-[rgba(255,255,255,0.06)] relative",
                     "transition-colors",
                   )}
                 >
+                  {/* Separator */}
+                  {idx > 0 && (
+                    <div className="mx-6 h-px bg-gradient-to-r from-transparent via-[rgba(255,255,255,0.15)] to-transparent" />
+                  )}
                   {/* Header */}
                   <button
                                         onClick={() => toggleExpanded(idx)}
