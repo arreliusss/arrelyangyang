@@ -77,7 +77,7 @@ export default function EducationSection() {
                 在逢甲大學學中文。我希望可以找用中文的工作，也跟所有人都用中文講話。
               </p>
 
-              <div className="flex items-center gap-3 p-3 rounded-[0.625rem] bg-[rgba(212,168,106,0.08)] border border-[rgba(212,168,106,0.15)] backdrop-blur-sm text-[0.8125rem] text-[#C4BFD0]">
+              <div className="flex items-center gap-3 p-3 rounded-[0.625rem] bg-[rgba(255,255,255,0.04)] border border-[rgba(255,255,255,0.08)] backdrop-blur-sm text-[0.8125rem] text-[#C4BFD0]">
                 <strong className="text-[#EBE8F0]">Ongoing:</strong> Mandarin speaking &amp;
                 comprehension.
               </div>

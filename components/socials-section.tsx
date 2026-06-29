@@ -54,11 +54,6 @@ export default function SocialsSection() {
 
         <div className="max-w-[34rem]">
           <ScrollReveal>
-            <p className="text-[0.9375rem] text-[#C4BFD0] leading-relaxed mb-7">
-              I&apos;m open to research collaborations, internship opportunities, and
-              academic discussions in NLP and machine learning.
-            </p>
-
             <div className="space-y-2">
               {SOCIAL_LINKS.map((link) => (
                 <a
